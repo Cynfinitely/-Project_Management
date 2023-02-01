@@ -1,10 +1,10 @@
-export interface IUserAuth {  
+export interface IUserAuth {
   email: string
   password: string
 }
 
 export interface IUserRegister extends IUserAuth {
-  fullName: string
+  fullname: string
   repeatPassword: string
 }
 
@@ -31,7 +31,7 @@ interface IUserState {
 export const userInitialState: IUserState = (() => {
   const data = JSON.parse(localStorage.getItem('user') ?? 'null')
   return {
-      user: data,
-      isLoading: false
+    user: data,
+    isLoading: false
   }
 })()

@@ -1,0 +1,21 @@
+.comment-list {
+    max-height: 300px;
+    margin-bottom: 2rem;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+  }
+  
+  .comment-list h4 {
+    font-size: 12px;
+  }
+  
+  .comment-list .comment-item {
+    align-items: center;
+  }
+  
+  .comment-list .area-comment-item {
+    width: 70%;    
+    height: 42px;
+    margin-left: 5px;
+    padding: 0.5rem;
+  }

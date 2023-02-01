@@ -3,18 +3,18 @@ import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useState } from "react";
 import { Link, useParams } from 'react-router-dom'
+import CommentForm from '../../components/CommentForm/CommentForm';
+import EditTaskForm from '../../components/EditTaskForm/EditTaskForm';
 import Modal from '../../components/Modal/Modal';
+import { UseModal } from '../../hooks/useModal';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+import { ICommentTask } from '../../models/comment.model';
+import { Task } from '../../models/task.model';
+import { fetchCommentByTask, updateTask } from '../../services/task.service';
 
 
 import "./ProjectDashboard.css"
 
-
-type Task = {
-  _id: string,
-  name: string;
-  status: string;
-};
 
 type Projct = {
   name: string,
@@ -26,7 +26,20 @@ type inputArr = {
   id: number,
   value: string
 }
+const FORM = {
+  NONE: 0,
+  EDIT: 1,
+  COMMENT: 2
+}
+
 const ProjectDashboard = () => {
+
+  const {showModal, toggle} = UseModal()
+  const dispatch = useAppDispatch()
+  const [taskSelected, setTaskSelected] = useState<Task>()
+  const [showForm, setShowForm] = useState(FORM.NONE)
+  const [commentsTask, setCommentTask] = useState<ICommentTask[]>([])
+  const [taskId, setTaskId] = useState("")
 
 
   const [arr, setArr] = useState<inputArr[]>([]);
@@ -147,11 +160,58 @@ const ProjectDashboard = () => {
     );
   };
 
+  function onClickTask(task: Task) {
+    setTaskSelected(task)
+    setShowForm(FORM.EDIT)
+    toggle()
+  }
+
+  function onClickComment(taskId: string) {
+    dispatch(fetchCommentByTask(taskId))
+    .then(value => {
+      const comments = value.payload['comments']
+      console.log(value.payload);
+          
+      setCommentTask(comments)       
+      setTaskId(taskId)
+      setShowForm(FORM.COMMENT)
+      toggle()
+    })
+  }
+
+  function handleEditTask(newTask: Task) {    
+    dispatch(
+      updateTask({
+        name: newTask.name,
+        status: newTask.status,
+        createdAt: newTask.createdAt,
+        taskId: newTask._id,
+        userToken: user?.userToken ?? "",
+        desription: newTask.description ?? ""
+      })
+    )
+    .then(value => {      
+      if(value != null) {
+        setIsTaskAdded(true)
+        toggle()
+      }
+    })
+  }
+
+  function formatDate(date: string): string {
+    try {
+      const dateSplit = date.split('T')
+      return dateSplit[0]
+    } catch (error) {
+      return ""
+    }
+  }
+
   return (
     <div className='p-10 mb-36 px-4 lg:px-8'>
      <div className='flex flex-row justify-between '>
         <div className='px-10 mt-5'>
-          <div className="text-lg font-bold mr-4">hi, username</div>
+          <div className="text-lg font-bold mr-4">Hi, Celal!</div>
           <div className="text-2xl font-bold mr-4">{project ? project.name : ''}</div>
         </div>
         <div className="flex items-center px-10 mt-5">
@@ -169,10 +229,10 @@ const ProjectDashboard = () => {
           <div className='px-2 py-1'>
             {ideas.map((task, index) =>
               <div className='my-2 p-3 border flex items-center justify-between' key={index}>
-                {task.name}
+                <h3 className='cursor-pointer w-full text-left' onClick={() => onClickTask(task)}>{task.name}</h3>
                 <div className='flex justify-between gap-1 items-end'>
                   <div className='flex mx-3 items-end'>
-                    <button className='bg-inherit text-gray-700 hover:text-gray-500 mr-1'>
+                    <button className='bg-inherit text-gray-700 hover:text-gray-500 mr-1' onClick={() => onClickComment(task._id)}>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
                         <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
                       </svg>
@@ -221,10 +281,10 @@ const ProjectDashboard = () => {
           <div className='px-2 py-1'>
             {todo.map((task, index) =>
               <div className='my-2 p-3 border flex items-center justify-between' key={index}>
-                {task.name}
+                <h3 className='cursor-pointer w-full text-left' onClick={() => onClickTask(task)}>{task.name}</h3>
                 <div className=' flex justify-between gap-1 items-end'>
                   <div className='flex mx-3 items-end'>
-                    <button className='bg-inherit text-gray-700 hover:text-gray-500 mr-1'>
+                    <button className='bg-inherit text-gray-700 hover:text-gray-500 mr-1' onClick={() => onClickComment(task._id)}>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
                         <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
                       </svg>
@@ -254,10 +314,10 @@ const ProjectDashboard = () => {
           <div className='px-2 py-'>
             {inProgress.map((task, index) =>
               <div className='my-2 p-3 border flex items-center justify-between' key={index}>
-                {task.name}
+                <h3 className='cursor-pointer w-full text-left' onClick={() => onClickTask(task)}>{task.name}</h3>
                 <div className=' flex justify-between gap-1 items-end'>
                   <div className='flex mx-3 items-end'>
-                    <button className='bg-inherit text-gray-700 hover:text-gray-500 mr-1'>
+                    <button className='bg-inherit text-gray-700 hover:text-gray-500 mr-1' onClick={() => onClickComment(task._id)}>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
                         <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
                       </svg>
@@ -286,10 +346,10 @@ const ProjectDashboard = () => {
           <div className='px-2 py-1'>
             {finished.map((task, index) =>
               <div className='my-2 p-3 border flex items-center justify-between' key={index}>
-                {task.name}
+                <h3 className='cursor-pointer w-full text-left' onClick={() => onClickTask(task)}>{task.name}</h3>
                 <div className=' flex justify-between gap-1 items-center'>
                   <div className='flex mx-3 items-center'>
-                    <button className='bg-inherit text-gray-700 hover:text-gray-500 mr-1'>
+                    <button className='bg-inherit text-gray-700 hover:text-gray-500 mr-1' onClick={() => onClickComment(task._id)}>
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-chat-left-text-fill" viewBox="0 0 16 16">
                         <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm3.5 1a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z" />
                       </svg>
@@ -305,6 +365,33 @@ const ProjectDashboard = () => {
           </div>
         </div>
       </div>
+
+      <Modal
+        title=''
+        showModal={showModal}
+        closeDialog={() => toggle()}        
+      >
+        {showForm === FORM.EDIT ? (
+          <EditTaskForm
+            taskId={taskSelected?._id ?? ""}
+            taskName={taskSelected?.name ??  ""}
+            taskDescription={taskSelected?.description ?? ""}
+            taskDate={ formatDate(taskSelected?.createdAt ?? "")}
+            taskStatus={taskSelected?.status ?? "todo"}
+            acceptClick={(task) => handleEditTask(task)}
+            closeModal={() => toggle()}
+          />
+        ) : null}
+
+        {showForm === FORM.COMMENT ? (
+          <CommentForm
+            task_id={taskId}
+            comments={commentsTask}
+            closeModal={() => toggle()}
+          />
+        ) : null}
+
+      </Modal>
     </div>
 
   )

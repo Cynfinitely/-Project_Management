@@ -14,7 +14,7 @@ const Register = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     
-    const [fullName, setFullName] = useState<string>("")
+    const [fullname, setFullName] = useState<string>("")
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [repeatPassword, setRepeatPassword] = useState<string>("")
@@ -23,7 +23,7 @@ const Register = () => {
       e.preventDefault()
   
       const userRegistration: IUserRegister = {
-        fullName: fullName,
+        fullname: fullname,
         email: email,
         password: password,
         repeatPassword: repeatPassword
@@ -33,14 +33,14 @@ const Register = () => {
       .then(value => {
         if(value.payload != null) {
           const user: IUser = value.payload          
-          dispatch(setUser({email: user.email, fullName: user.fullname, userToken: user.userToken, projects: []}))
+          dispatch(setUser({email: user.email, fullname: user.fullname, userToken: user.userToken, projects: []}))
           navigate('/dashboard')
         }
       })
     }
     
       function checkUserInputs(): boolean {
-        if(email.trim() !== "" && fullName.trim() !== "" && password.trim() !== "" && repeatPassword.trim() !== "") {
+        if(email.trim() !== "" && fullname.trim() !== "" && password.trim() !== "" && repeatPassword.trim() !== "") {
           return false
         }
         return true
@@ -59,7 +59,7 @@ const Register = () => {
                             label="Full Name"
                             placeHolder="Full Name"
                             typeInput="text"
-                            inputValue={fullName}
+                            inputValue={fullname}
                             onValueChange={(value) => setFullName(value)}
                         />
                             

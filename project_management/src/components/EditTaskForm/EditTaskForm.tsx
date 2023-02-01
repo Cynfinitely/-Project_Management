@@ -5,21 +5,30 @@ import InputLabel from './../InputLabel/InputLabel';
 import TextAreaLabel from '../TextAreaLabel/TextAreaLabel';
 import ModalFooter from '../ModalFooter/ModalFooter';
 
-import { ITask } from '../../models/task.model';
+import { ITask, Task } from '../../models/task.model';
 
 import './style.css'
 import CheckBox from '../CheckBox/CheckBox';
 
 interface IEditTaskFormProps {
+  taskId: string
   taskName: string;
   taskDescription: string,
   taskStatus: string,
   taskDate: string
   closeModal: () => void
-  acceptClick: (task: ITask) => void
+  acceptClick: (task: Task) => void
+}
+
+export interface ITaskUpdated {
+  title: string
+  description: string
+  status: string
+  dueDate: string
 }
 
 const EditTaskForm = ({
+  taskId,
   taskName,
   taskDescription,
   taskStatus,
@@ -35,13 +44,14 @@ const EditTaskForm = ({
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()    
-    if(desription !== taskDescription && title !== taskName) {
-      const task: ITask = {
-        title: title,
-        description: desription
-      }
-      acceptClick(task)      
+    const task: Task = {
+      _id: taskId,
+      name: title,
+      status: status,
+      createdAt: dueDate,
+      description: desription
     }
+    acceptClick(task)          
   }
 
   return (
@@ -69,7 +79,7 @@ const EditTaskForm = ({
         <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)}/>
 
         <h3>Status</h3>
-        <CheckBox text='Todo' onChange={(newStatus) => setStatus(newStatus)}/>
+        <CheckBox text={status} onChange={(newStatus) => setStatus(newStatus)}/>
 
         <ModalFooter cancelClick={() => closeModal()}/>
       </form>

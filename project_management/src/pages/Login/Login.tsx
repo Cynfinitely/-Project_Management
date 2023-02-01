@@ -25,8 +25,15 @@ const Login = () => {
       dispatch(loginUser({email: email, password: password}))
       .then(value => {
         if(value.payload) {
-          const user: IUser = value.payload          
-          dispatch(setUser({email: user.email, fullName: user.fullname, userToken: user.userToken, projects: []}))
+          const user: IUser = value.payload
+          console.log(value.payload);
+                  
+          
+          dispatch(setUser({id: '63da33cf7890075b81f3c1ed',
+            email: user.email, 
+            fullname: user.fullname, 
+            userToken: user.userToken, 
+            projects: []}))
           navigate('/dashboard')
         }
       })

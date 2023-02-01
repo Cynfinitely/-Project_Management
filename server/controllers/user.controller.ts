@@ -12,7 +12,7 @@ module.exports.signup = async function (req, res) {
     }
     const secretKey = process.env.JWT_SECRET_KEY
     const token = jwt.sign(payload, secretKey)
-    res.json({ userToken: token, fullname:user.fullname, email:user.email, id: user.id })
+    res.json({ userToken: token, fullname: user.fullname, email: user.email, id: user.id })
 
   } catch (err) {
     res.status(400).json(err);
@@ -37,7 +37,7 @@ module.exports.login = async function (req, res) {
     const secretKey = process.env.JWT_SECRET_KEY
     const token = jwt.sign(payload, secretKey)
 
-    res.json({ userToken: token, fullname:user.fullname, email:user.email, id: user.id })
+    res.json({ userToken: token, fullname: user.fullname, email: user.email, id: user.id })
 
   } catch (err) {
     res.status(400).json(" email dosn't exist ");
@@ -58,8 +58,8 @@ module.exports.findUserById = (req, res) => {
 
 module.exports.deleteUser = (req, res) => {
   User.deleteOne({ _id: req.params.id })
-      .then(deletedUser => res.json({ user: deletedUser }))
-      .catch(err => res.json({ message: "something went wrong", error: err }))
+    .then(deletedUser => res.json({ user: deletedUser }))
+    .catch(err => res.json({ message: "something went wrong", error: err }))
 }
 
 // module.exports.findAllTasksOfProject = (req, res) => {
