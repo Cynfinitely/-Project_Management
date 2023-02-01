@@ -25,7 +25,7 @@ function App() {
       <BrowserRouter>
         <div className='flex flex-col h-screen justify-between'>
         <Navbar />
-        <div className='mb-auto h-10 m-5 grow'>
+        <div className='flex flex-col justify-content'>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
