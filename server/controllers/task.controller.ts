@@ -63,24 +63,37 @@ module.exports.updateTask = (req, res) => {
     //     res.status(400).json({ err: 'invaild token' })
     // }
 
-    console.log(req.params.id)
-    console.log(req.body)
+
     Task.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
         .then(updatedTask => {
-            if (req.body.assigned_id && Project.find({ _id: req.body.project_id, users: req.body.assigned_id }).length == 0) {
-                Project.findByIdAndUpdate(
-                    { _id: req.body.project_id },
-                    { $push: { users: req.body.assigned_id } },
-                    { new: true, runValidators: true },
-                    function (error, success) {
-                        if (error) {
-                            console.log(error);
-                        } else {
-                            console.log(success);
-                        }
-                    })
+            Project.findOne({ _id: req.body.project_id, users: req.body.assigned_id }, (err, project) => {
+                // user is a single document which may be null for no results
+                if (err) {
+                    // handle error
+                    return;
+                }
+                if (project) {
+                    // there is user)
+                    return;
+                }
+                else{
+                    if (req.body.assigned_id && project == null) {
+                        Project.findByIdAndUpdate(
+                            { _id: req.body.project_id },
+                            { $push: { users: req.body.assigned_id } },
+                            { new: true, runValidators: true },
+                            function (error, success) {
+                                if (error) {
+                                    console.log(error);
+                                } else {
+                                    console.log(success);
+                                }
+                            })
+                    }
+                }
+            })
 
-            }
+
             res.json({ task: updatedTask })
         })
         .catch(err => res.status(400).json(err))

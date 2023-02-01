@@ -34,7 +34,6 @@ UserSchema.virtual("confirmPassword")
 
 
 UserSchema.path("password").validate(function () {
-  console.log(this.password, this._confirmPassword)
   if (this.password != this.confirmPassword) {
     this.invalidate("confirmPassword", "Passwords do not match");
   }
