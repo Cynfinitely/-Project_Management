@@ -33,7 +33,7 @@ const Register = () => {
       .then(value => {
         if(value.payload != null) {
           const user: IUser = value.payload          
-          dispatch(setUser({email: user.email, fullName: user.fullname, userToken: user.userToken}))
+          dispatch(setUser({email: user.email, fullName: user.fullname, userToken: user.userToken, projects: []}))
           navigate('/dashboard')
         }
       })

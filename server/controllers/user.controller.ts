@@ -12,7 +12,7 @@ module.exports.signup = async function (req, res) {
     }
     const secretKey = process.env.JWT_SECRET_KEY
     const token = jwt.sign(payload, secretKey)
-    res.json({userToken: token ,fullname:user.fullname, email:user.email });
+    res.json({ userToken: token, fullname:user.fullname, email:user.email, id: user.id })
 
   } catch (err) {
     res.status(400).json(err);
@@ -37,7 +37,7 @@ module.exports.login = async function (req, res) {
     const secretKey = process.env.JWT_SECRET_KEY
     const token = jwt.sign(payload, secretKey)
 
-    res.json({ userToken: token, fullname:user.fullname, email:user.email })
+    res.json({ userToken: token, fullname:user.fullname, email:user.email, id: user.id })
 
   } catch (err) {
     res.status(400).json(" email dosn't exist ");

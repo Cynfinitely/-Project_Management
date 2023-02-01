@@ -4,6 +4,8 @@ import React, { useEffect } from 'react'
 import { useState } from "react";
 import { Link, useParams } from 'react-router-dom'
 import Modal from '../../components/Modal/Modal';
+import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
+
 
 import "./ProjectDashboard.css"
 
@@ -36,6 +38,8 @@ const ProjectDashboard = () => {
   const [project, setProject] = useState<Projct>()
   const [isTaskAdded, setIsTaskAdded] = useState<Boolean>(false)
 
+  const userState = useAppSelector(state => state.user)
+  const { user } = userState
 
 
   const addInput = () => {
@@ -69,7 +73,6 @@ const ProjectDashboard = () => {
     axios.get(`http://localhost:5000/api/project/${projectId}/tasks`)
       .then(res => {
         if (res.data.tasks.length > 0) {
-          console.log(res.data.tasks)
           setIdeas(res.data.tasks.filter((task: any) => task.status == 'idea'))
           setTodo(res.data.tasks.filter((task: any) => task.status == 'todo'))
           setInProgress(res.data.tasks.filter((task: any) => task.status == 'inProgress'))
@@ -118,6 +121,7 @@ const ProjectDashboard = () => {
       .catch(err => console.log(err))
 
   }
+  console.log(user)
 
   function GetPercentage(): string{
     const taskPercentage = ((finished.length*100)/ (ideas.length + finished.length +todo.length+inProgress.length)).toFixed(1);
