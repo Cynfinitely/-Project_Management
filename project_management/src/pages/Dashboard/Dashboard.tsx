@@ -89,6 +89,7 @@ const Dashboard = () => {
         <div className='w-1/2 items-start pr-10 lg:pr-20 flex flex-col mr-4 cursor-pointer py-1 text-2xl font-bold text-gray-700'>
           <span>Hi Celal!</span>
           <span>Welcome To Dashboard</span>
+          <span className='text-sm'>You are so handsome today:)</span>
         </div>
         <div className='pt-4 flex flex-col h-24 items-center w-1/2'>
           {!showInput && <button className=' bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 w-52 rounded items-start text-2xl'onClick={() => setShowInput(!showInput)}>Create Project</button>}
@@ -110,7 +111,7 @@ const Dashboard = () => {
       </div>
       {/* part -2 jacob */}
       <div className='w-full mt-10'>
-        <h3 className='mt-2 mb-2 text-center pr-10 lg:pr-20 flex flex-col mr-4 cursor-pointer py-1 text-xl font-bold text-gray-700'>Your Projects</h3>
+        <h3 className='mt-2 mb-2 text-center pr-10 lg:pr-20 flex flex-col mr-4 cursor-pointer py-1 text-xl font-bold text-gray-700'>Your Awesome Projects</h3>
         <div className='px-10 lg:px-20'>
         {
           user?.projects.map((project) => {

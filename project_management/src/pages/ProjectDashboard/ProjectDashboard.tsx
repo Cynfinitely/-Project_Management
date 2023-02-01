@@ -208,7 +208,7 @@ const ProjectDashboard = () => {
   }
 
   return (
-    <div className='p-10 mb-36 px-4 lg:px-8'>
+    <div className='p-10 mb-36 px-4 lg:px-8 space-between'>
      <div className='flex flex-row justify-between '>
         <div className='px-10 mt-5'>
           <div className="text-lg font-bold mr-4">Hi, Celal!</div>

@@ -1,14 +1,16 @@
 import React from "react";
 
 import "./style/footer.css";
+import logo from './style/happiness.png'
+
 
 const footer = () => {
   return (
     <div className="h 1/4">
       <footer className="footer">
-        <div className="flex flex-row bg-blue-50">
-          <div className="basis-1/5">
-            <div className="pt-6 text-center">LOGO</div>
+        <div className="flex flex-row bg-blue-50 justify-items-center items-center">
+          <div className="flex flex-col basis-1/5 items-center">
+            <div className=" flex flex-row pt-6 text-center items-center"><img src={logo} className="w-20 h-20 ml-5 "></img></div>
           </div>
           <div className="basis-1/5">
             <div className="pt-6 pb-4 font-bold">Products</div>
