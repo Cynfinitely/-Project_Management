@@ -4,7 +4,7 @@ import "./style/footer.css";
 
 const footer = () => {
   return (
-    <div>
+    <div className="">
       <footer className="footer">
         <div className="flex flex-row bg-slate-200">
           <div className="basis-1/5">
@@ -21,15 +21,6 @@ const footer = () => {
               </p>
               <p>
                 <a href="">Jira Service Management</a>
-              </p>
-              <p>
-                <a href="">Confluence</a>
-              </p>
-              <p>
-                <a href="">Trello</a>
-              </p>
-              <p>
-                <a href="">Bitbucket</a>
               </p>
             </div>
             <div className="text-blue-600">
@@ -49,15 +40,6 @@ const footer = () => {
               <p>
                 <a href="">Community</a>
               </p>
-              <p>
-                <a href="">Knowledge base</a>
-              </p>
-              <p>
-                <a href="">Marketplace</a>
-              </p>
-              <p>
-                <a href="">My Account</a>
-              </p>
             </div>
 
             <div className="pb-8 text-blue-600">
@@ -76,12 +58,7 @@ const footer = () => {
               <p>
                 <a href="">Documentation</a>
               </p>
-              <p>
-                <a href="">Developer Resources</a>
-              </p>
-              <p>
-                <a href="">Enterprise services</a>
-              </p>
+
             </div>
             <div className="pb-8 text-blue-600">
               <a href="">View all resources</a>
@@ -99,18 +76,7 @@ const footer = () => {
               <p>
                 <a href="">Events</a>
               </p>
-              <p>
-                <a href="">Blogs</a>
-              </p>
-              <p>
-                <a href="">Foundations</a>
-              </p>
-              <p>
-                <a href="">Investors Relations</a>
-              </p>
-              <p>
-                <a href="">Trust & Security</a>
-              </p>
+
             </div>
             <div className="pb-8 text-blue-600">
               <a href="">Contact us</a>

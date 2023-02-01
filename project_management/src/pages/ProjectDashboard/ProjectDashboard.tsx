@@ -172,7 +172,7 @@ const ProjectDashboard = () => {
               );
             })}
           </div>
-          <div className='my-2 text-3xl '>
+          <div className='my-2 text-3xl  text-center'>
             <button className='bg-inherit text-gray-400 rounded-full pb-2 px-3 hover:bg-gray-200 font-bold hover:text-gray-700' onClick={addInput}>+</button>
           </div>
         </div>

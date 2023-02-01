@@ -23,7 +23,9 @@ function App() {
     <Provider store={store}>
       <ReactNotifications />
       <BrowserRouter>
+        <div className='flex flex-col h-screen justify-between'>
         <Navbar />
+        <div className='mb-auto h-10 m-5 grow'>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -32,7 +34,9 @@ function App() {
           <Route path="/project/:projectId" element={<ProjectDashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
+        </div>
         <Footer />
+        </div>    
       </BrowserRouter>
     </Provider>
   );

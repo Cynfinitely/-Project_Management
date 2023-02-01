@@ -18,6 +18,7 @@ const Dashboard = () => {
 
   const [showInput, setShowInput] = useState(false)
   const [projectName, setProjectName] = useState("")
+  
 
   useEffect(() => {
     fetchProjectsByUser()
@@ -81,16 +82,16 @@ const Dashboard = () => {
   }
 
   return (
-    <div className='w-full h-full flex flex-col'>
-      <h1>Dashboard</h1>
+    <div className='w-full h-full flex flex-col text-center'>
+      <h1 className='text-2xl'>Dashboard</h1>
       {/* part-1 daniel */}
       <div className='flex w-full justify-between'>
         <div className='flex flex-col w-1/2'>
           <span>Hi {user?.fullname}</span>
-          <span>Welcome To DashBoard</span>
+          <span>Welcome To Dashboard</span>
         </div>
-        <div className='flex flex-col w-1/2'>
-          <button onClick={() => setShowInput(!showInput)}>Create Project</button>
+        <div className='flex flex-col w-1/4 justify-items-center '>
+          <button className='w-1/2' onClick={() => setShowInput(!showInput)}>Create Project</button>
           <input
             style={{display: showInput ? 'block' : 'none' }}
             placeholder='Project Name'
@@ -98,7 +99,7 @@ const Dashboard = () => {
             value={projectName} 
             onChange={(e) => setProjectName(e.target.value)}
           />
-          <div className='flex w-full' style={{display: showInput ? 'flex' : 'none' }}>
+          <div className='flex w-full space-between' style={{display: showInput ? 'flex' : 'none' }}>
             <button onClick={() => handleCreateNewProject()}>Accept</button>
             <button onClick={() => setShowInput(!showInput)}>Cancel</button>            
           </div>
@@ -106,17 +107,14 @@ const Dashboard = () => {
       </div>
       {/* part -2 jacob */}
       <div>
-
-        <h1>Your Projects</h1>
-
-        <h1 className='text-center'>Your Project</h1>
+        <h1 className='text-center mt-10 mb-4 text-xl'>Your Projects</h1>
         {
           user?.projects.map((project) => {
             return (
               <ProjectItems 
                 projectId={project._id}
                 projectName={project.name} 
-                projectDate={project.createdAt}
+                projectDate={new Date(`${project.createdAt}`).toDateString()}
                 deleteProject={(value) => handleDeleteProject(value)}
                 goProject={(value) => navigate(`/project/${value}`)}           
               />
