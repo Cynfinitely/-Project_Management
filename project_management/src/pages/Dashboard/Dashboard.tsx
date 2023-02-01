@@ -82,32 +82,36 @@ const Dashboard = () => {
   }
 
   return (
-    <div className='w-full h-full flex flex-col text-center'>
+    <div className='w-full h-full flex flex-col text-center pb-10'>
       <h1 className='text-2xl'>Dashboard</h1>
       {/* part-1 daniel */}
       <div className='flex w-full justify-between'>
-        <div className='flex flex-col w-1/2'>
+        <div className='w-1/2 items-start pr-10 lg:pr-20 flex flex-col mr-4 cursor-pointer py-1 text-2xl font-bold text-gray-700'>
           <span>Hi {user?.fullname}</span>
           <span>Welcome To Dashboard</span>
         </div>
-        <div className='flex flex-col w-1/4 justify-items-center '>
-          <button className='w-1/2' onClick={() => setShowInput(!showInput)}>Create Project</button>
-          <input
-            style={{display: showInput ? 'block' : 'none' }}
-            placeholder='Project Name'
-            type="text" 
-            value={projectName} 
-            onChange={(e) => setProjectName(e.target.value)}
-          />
-          <div className='flex w-full space-between' style={{display: showInput ? 'flex' : 'none' }}>
-            <button onClick={() => handleCreateNewProject()}>Accept</button>
-            <button onClick={() => setShowInput(!showInput)}>Cancel</button>            
+        <div className='pt-4 flex flex-col h-24 items-center w-1/2'>
+          {!showInput && <button className=' bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 w-52 rounded items-start text-2xl'onClick={() => setShowInput(!showInput)}>Create Project</button>}
+          <div className='w-52'>
+            <input className="mb-2 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+
+              style={{display: showInput ? 'block' : 'none' }}
+              placeholder='Project Name'
+              type="text" 
+              value={projectName} 
+              onChange={(e) => setProjectName(e.target.value)}
+            />
+            <div className='flex w-full justify-between' style={{display: showInput ? 'flex' : 'none' }}>
+              <button className='bg-indigo-500 mr-2 text-sm hover:bg-indigo-600 text-white font-bold py-1 px-4 rounded'onClick={() => handleCreateNewProject()}>Accept</button>
+              <button className='bg-red-400 text-sm hover:bg-indigo-600 text-white font-bold py-1 px-4 rounded'onClick={() => setShowInput(!showInput)}>Cancel</button>            
+            </div>
           </div>
         </div>
       </div>
       {/* part -2 jacob */}
-      <div>
-        <h1 className='text-center mt-10 mb-4 text-xl'>Your Projects</h1>
+      <div className='w-full '>
+        <h1 className='mt-2 mb-2 text-center pr-10 lg:pr-20 flex flex-col mr-4 cursor-pointer py-1 text-2xl font-bold text-gray-700'>Your Projects</h1>
+        <div className='px-10 lg:px-20'>
         {
           user?.projects.map((project) => {
             return (
@@ -121,6 +125,9 @@ const Dashboard = () => {
             )
           })
         }
+
+        </div>
+        
       </div>
     </div>
   )

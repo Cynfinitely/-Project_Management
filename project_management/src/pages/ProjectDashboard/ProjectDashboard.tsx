@@ -5,6 +5,8 @@ import { useState } from "react";
 import { Link, useParams } from 'react-router-dom'
 import Modal from '../../components/Modal/Modal';
 
+import "./ProjectDashboard.css"
+
 
 type Task = {
   _id: string,
@@ -117,18 +119,50 @@ const ProjectDashboard = () => {
 
   }
 
+  function GetPercentage(): string{
+    const taskPercentage = ((finished.length*100)/ (ideas.length + finished.length +todo.length+inProgress.length)).toFixed(1);
+    return taskPercentage.toString()
+
+  }
+
+  const header = document.getElementById("element");
+  if (header) {
+    const taskValue = (finished.length/(ideas.length + finished.length+todo.length+inProgress.length));
+    if (taskValue <= 0.33){
+      header.style.color = "#ff0000";
+    }
+    else if (taskValue <= 0.66 && taskValue > 0.33){
+      header.style.color = "#ffff00";
+    }
+    else if (taskValue <= 1 && taskValue > 0.66){
+      header.style.color = "#00ff00";
+    }
+    document.documentElement.style.setProperty(
+      "--header-color",
+      header.style.color
+    );
+  };
+
   return (
-    <div className='m-5 mt-20'>
-      <div className='px-10 mt-5'>
-        <div className="text-lg font-bold mr-4">hi, username</div>
-        <div className="text-2xl font-bold mr-4">{project ? project.name : ''}</div>
+    <div className='p-10 mb-36 px-4 lg:px-8'>
+     <div className='flex flex-row justify-between '>
+        <div className='px-10 mt-5'>
+          <div className="text-lg font-bold mr-4">hi, username</div>
+          <div className="text-2xl font-bold mr-4">{project ? project.name : ''}</div>
+        </div>
+        <div className="flex items-center px-10 mt-5">
+          <div className="w-1/3 text-right">
+          <p id='element' className="text-3xl font-bold">{(() => GetPercentage())()}%</p>
+          <p className="text-gray-600">Completed</p>
+          </div>
+        </div>
       </div>
       <div className='flex gap-5 container p-10 mx-auto'>
-        <div className='rounded-lg border w-full mx-auto'>
-          <div className="p-4 border-b">
+        <div className='rounded-lg  text-center w-full mx-auto shadow-md'>
+          <div className="p-4 border-b bg-indigo-400 rounded-t-md">
             <h3 className="text-lg font-bold">Idea</h3>
           </div>
-          <div className='p-5'>
+          <div className='px-2 py-1'>
             {ideas.map((task, index) =>
               <div className='my-2 p-3 border flex items-center justify-between' key={index}>
                 {task.name}
@@ -176,11 +210,11 @@ const ProjectDashboard = () => {
             <button className='bg-inherit text-gray-400 rounded-full pb-2 px-3 hover:bg-gray-200 font-bold hover:text-gray-700' onClick={addInput}>+</button>
           </div>
         </div>
-        <div className='rounded-lg border text-center w-full mx-auto'>
-          <div className="p-4 border-b">
+        <div className='rounded-lg  text-center w-full mx-auto shadow-md'>
+          <div className="p-4 border-b bg-rose-400 rounded-t-md">
             <h3 className="text-lg font-bold">To-Do</h3>
           </div>
-          <div className='p-4'>
+          <div className='px-2 py-1'>
             {todo.map((task, index) =>
               <div className='my-2 p-3 border flex items-center justify-between' key={index}>
                 {task.name}
@@ -209,11 +243,11 @@ const ProjectDashboard = () => {
               </div>)}
           </div>
         </div>
-        <div className='rounded-lg border text-center w-full mx-auto'>
-          <div className="p-4 border-b">
+        <div className='rounded-lg  text-center w-full mx-auto shadow-md'>
+          <div className="p-4 border-b bg-yellow-200 rounded-t-md">
             <h3 className="text-lg font-bold">In Progress</h3>
           </div>
-          <div className='p-4'>
+          <div className='px-2 py-'>
             {inProgress.map((task, index) =>
               <div className='my-2 p-3 border flex items-center justify-between' key={index}>
                 {task.name}
@@ -241,11 +275,11 @@ const ProjectDashboard = () => {
               </div>)}
           </div>
         </div>
-        <div className='rounded-lg border text-center w-full mx-auto'>
-          <div className="p-4 border-b">
+        <div className='rounded-lg text-center w-full mx-auto shadow-md'>
+          <div className="p-4 bg-green-300 rounded-t-md">
             <h3 className="text-lg font-bold ">Finished</h3>
           </div>
-          <div className='p-4'>
+          <div className='px-2 py-1'>
             {finished.map((task, index) =>
               <div className='my-2 p-3 border flex items-center justify-between' key={index}>
                 {task.name}

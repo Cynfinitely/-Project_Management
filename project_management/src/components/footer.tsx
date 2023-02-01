@@ -4,9 +4,9 @@ import "./style/footer.css";
 
 const footer = () => {
   return (
-    <div className="">
+    <div className="h 1/4">
       <footer className="footer">
-        <div className="flex flex-row bg-slate-200">
+        <div className="flex flex-row bg-blue-50">
           <div className="basis-1/5">
             <div className="pt-6 text-center">LOGO</div>
           </div>
@@ -85,28 +85,20 @@ const footer = () => {
         </div>
       </footer>
 
-      <footer className="bg-slate-300 border-t-0 border-slate-500">
-        <div className="flex justify-around">
-          <div className="w-5/6 ">
-            <div>
-              <div className="flex flex-row justify-start">
-                
-                <p className="py-5 pr-10">
-                  <a href="">Privacy Policy</a>
-                </p>
-                <p className="py-5 pr-10">
-                  <a href="">Terms</a>
-                </p>
-                <p className="py-5 pr-10">
-                  <a href="">Impressum</a>
-                </p>
-                <p className="py-5 pr-10">
-                  Copyright © {new Date().getFullYear()} Company Name.
-                </p>
-              </div>
-              <div></div>
-            </div>
-          </div>
+      <footer className="bg-blue-100 ">
+        <div className="flex flex-row justify-end">
+          <p className="py-5 p-8 text-gray-500">
+            <a href="">Privacy Policy</a>
+          </p>
+          <p className="py-5 p-8 text-gray-500">
+            <a href="">Terms</a>
+          </p>
+          <p className="py-5 p-8 text-gray-500">
+            <a href="">Impressum</a>
+          </p>
+          <p className="py-5 p-8 text-gray-500">
+            Copyright © {new Date().getFullYear()} Company Name.
+          </p>
         </div>
       </footer>
 

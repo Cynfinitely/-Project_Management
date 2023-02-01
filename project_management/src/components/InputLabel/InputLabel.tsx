@@ -20,7 +20,7 @@ const InputLabel = ({
         <>
             <h3>{label}</h3>
             <input
-                className={`mb-16 ${extraClass}`}
+                className={`mb-16 ${extraClass} bg-gray-100  text-gray-900 rounded-lg focus:border-blue-800`}
                 type={typeInput}
                 value={inputValue}
                 onChange={(e) => onValueChange(e.target.value)} 
