@@ -2,30 +2,30 @@
 
 ## TO-DO
 
-- [ ] Routes for frontend ( jacob )
-- [ ] Navbar ( Norah )
+- [X] Routes for frontend ( jacob )
+- [X] Navbar ( Norah )
   - [ ] Links
-  - [ ] styling
+  - [X] styling
   - [ ] User name in navbar instead of signup and register
-- [ ] Footer ( jacob )
-  - [ ] Styling
+- [X] Footer ( jacob )
+  - [X] Styling
 
 - [ ] Authentication ( Daniel )
   - [x] Login Page ( Signup / Register )
   - [X] Token
   - [ ] normal user ,  HI username !
 
-- [ ] Dashboard ( Daniel )
-  - [ ] Display projects
-    - [ ] Get projects by user ( Daniel)
-    - [ ] Add project and list in there ( Daniel)
-  - [ ] Project page
-    - [ ] Tasks
-    - [ ] Popup page for each task
-    - [ ] IT : delete and move tasks 
+- [X] Dashboard ( Daniel )
+  - [X] Display projects
+    - [X] Get projects by user ( Daniel)
+    - [x] Add project and list in there ( Daniel)
+  - [X] Project page
+    - [X] Tasks
+    - [X] Popup page for each task
+    - [X] IT : delete and move tasks 
 
-- [ ] Popup page (Daniel )
-- [ ] track progress on projects. ( Jacob )
+- [X] Popup page (Daniel )
+- [X] track progress on projects. ( Jacob )
 
 ## If we have time:
 
@@ -35,61 +35,61 @@
 - [ ] Write tests for your code to ensure it is working correctly. ( Celal )
 - [ ] Use a task runner such as webpack or gulp. (Celal )
 
-- [ ] Styling ( Danyil Kokhenko) ( CELAL )
-  - [ ] General Styling
-  - [ ] Page Styling
-  - [ ] Navbar
-  - [ ] Footer
+- [X] Styling ( Danyil Kokhenko) ( CELAL )
+  - [X] General Styling
+  - [X] Page Styling
+  - [X] Navbar
+  - [X] Footer
 
 - [X] Server side ( Norah )
-  - [ ] Models ( Norah )
-    - [ ] Users
-      - [ ] full name
-      - [ ] e mail
-      - [ ] password
-      - [ ] is_admin
-    - [ ] Project
-      - [ ] name
-      - [ ] tasks ( foreign key )
-      - [ ] users ( foreign key )
-    - [ ] Tasks
-      - [ ] name
-      - [ ] description
-      - [ ] is_complated
-      - [ ] due dates
-      - [ ] assigned user ( foreign key)
-    - [ ] Comments
-      - [ ] description
-      - [ ] users ( foreign key)
-      - [ ] tasks ( foreign key)
+  - [X] Models ( Norah )
+    - [X] Users
+      - [X] full name
+      - [X] e mail
+      - [X] password
+      - [X] is_admin
+    - [X] Project
+      - [X] name
+      - [X] tasks ( foreign key )
+      - [X] users ( foreign key )
+    - [X] Tasks
+      - [X] name
+      - [X] description
+      - [X] is_complated
+      - [X] due dates
+      - [X] assigned user ( foreign key)
+    - [X] Comments
+      - [X] description
+      - [X] users ( foreign key)
+      - [X] tasks ( foreign key)
 
-  - [ ] Routes ( Norah )
-    - [ ] get projects
-    - [ ] create project
-    - [ ] add projects
-    - [ ] delete projects
-    - [ ] get project by id
-    - [ ] create task
-    - [ ] delete task
-    - [ ] update task
-    - [ ] get task
-    - [ ] user routes
-    - [ ] create comment
-    - [ ] delete comment
-    - [ ] update comment
-    - [ ] get comment
+  - [X] Routes ( Norah )
+    - [X] get projects
+    - [X] create project
+    - [X] add projects
+    - [X] delete projects
+    - [X] get project by id
+    - [X] create task
+    - [X] delete task
+    - [X] update task
+    - [X] get task
+    - [X] user routes
+    - [X] create comment
+    - [X] delete comment
+    - [X] update comment
+    - [X] get comment
   - [X] Controllers
   - [x] package.json ( Celal )
 
 
 
-## TECH ( update it)
+## TECH 
 
 - Yarn
 - Frontend:
   - React
   - Redux Toolkit
-  - 
+  - Tailwind CSs
 - Backend:
   - mongodb
   - express

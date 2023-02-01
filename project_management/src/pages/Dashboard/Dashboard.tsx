@@ -83,7 +83,7 @@ const Dashboard = () => {
 
   return (
     <div className='w-full h-full flex flex-col text-center pb-10'>
-      <h1 className='text-2xl'>Dashboard</h1>
+      {/* <h1 className='mt-2 mb-2 text-center pr-10 lg:pr-20 flex flex-col mr-4 cursor-pointer py-1 text-2xl font-bold text-gray-700'>Dashboard</h1> */}
       {/* part-1 daniel */}
       <div className='flex w-full justify-between'>
         <div className='w-1/2 items-start pr-10 lg:pr-20 flex flex-col mr-4 cursor-pointer py-1 text-2xl font-bold text-gray-700'>
@@ -109,8 +109,8 @@ const Dashboard = () => {
         </div>
       </div>
       {/* part -2 jacob */}
-      <div className='w-full '>
-        <h1 className='mt-2 mb-2 text-center pr-10 lg:pr-20 flex flex-col mr-4 cursor-pointer py-1 text-2xl font-bold text-gray-700'>Your Projects</h1>
+      <div className='w-full mt-10'>
+        <h3 className='mt-2 mb-2 text-center pr-10 lg:pr-20 flex flex-col mr-4 cursor-pointer py-1 text-xl font-bold text-gray-700'>Your Projects</h3>
         <div className='px-10 lg:px-20'>
         {
           user?.projects.map((project) => {
