@@ -90,7 +90,7 @@ module.exports.findAllTasksOfProject = (req, res) => {
     //     console.log(err)
     //     res.status(400).json({err:'invaild token' })
     // }
-    Task.find({ project_id: req.params.id })
+    Task.find({ project_id: req.params.id }).sort('updatedAt')
             .then(Tasks => res.json({ tasks: Tasks }))
             .catch(err => res.status(400).json(err))
 }

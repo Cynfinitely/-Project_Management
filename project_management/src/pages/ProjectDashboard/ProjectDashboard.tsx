@@ -249,8 +249,8 @@ const ProjectDashboard = () => {
                     </button>
                   </div>
                 </div>
-                <div className='p-3  '>
-                  <h3 className='cursor-pointer w-full text-left' onClick={() => onClickTask(task)}>{task.name}</h3>
+                <div className='p-3 w-full' onClick={() => onClickTask(task)}>
+                  <h3 className='cursor-pointer w-full text-left'>{task.name}</h3>
                 </div>
               </div>)}
 
@@ -300,8 +300,8 @@ const ProjectDashboard = () => {
                     </button>
                   </div>
                 </div>
-                <div className='p-3 '>
-                  <h3 className='cursor-pointer w-full text-left' onClick={() => onClickTask(task)}>{task.name}</h3>
+                <div className='p-3 w-full' onClick={() => onClickTask(task)}>
+                  <h3 className='cursor-pointer w-full text-left' >{task.name}</h3>
                 </div>
               </div>)}
           </div>
@@ -332,8 +332,8 @@ const ProjectDashboard = () => {
                     </button>
                   </div>
                 </div>
-                <div className='p-3 '>
-                  <h3 className='cursor-pointer w-full text-left' onClick={() => onClickTask(task)}>{task.name}</h3>
+                <div className='p-3 w-full'  onClick={() => onClickTask(task)}>
+                  <h3 className='cursor-pointer w-full text-left'>{task.name}</h3>
                 </div>
               </div>)}
           </div>
@@ -359,8 +359,8 @@ const ProjectDashboard = () => {
                     </button>
                   </div>
                 </div>
-                <div className='p-3 '>
-                  <h3 className='cursor-pointer w-full text-left' onClick={() => onClickTask(task)}>{task.name}</h3>
+                <div className='p-3 w-full' onClick={() => onClickTask(task)}>
+                  <h3 className='cursor-pointer w-full text-left'>{task.name}</h3>
                 </div>
               </div>)}
           </div>

@@ -12,9 +12,13 @@ module.exports.findAllTasks = (req, res) => {
 
 module.exports.findSingleTask = (req, res) => {
     const token = req.headers['x-access-token']
+    console.log(token)
     try {
         const secretKey = process.env.JWT_SECRET_KEY
+        console.log(secretKey)
+
         const decoded = jwt.verify(token, secretKey)
+        console.log(decoded)
         const id = decoded.userId
         Task.findOne({ _id: req.params.id })
             .then(singleTask => res.json({ task: singleTask }))
