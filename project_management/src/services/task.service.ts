@@ -31,8 +31,9 @@ export const fetchSingleTask = createAsyncThunk('fechSingleTask',
 interface IUpdateTask extends IRequesTask {
     name: string
     status: string
-    createdAt: string
+    due_date: string
     desription: string
+    // assigned_id: string
 }
 
 export const updateTask = createAsyncThunk('updateTask',
@@ -43,12 +44,13 @@ export const updateTask = createAsyncThunk('updateTask',
                 ['x-access-token']: props.userToken
             }
         }
-
+        console.log(props)
         const response = await axios.put(`${BASE_URL}/task/update/${props.taskId}`, {
             name: props.name,
             status: props.status,
-            createdAt: props.createdAt,
-            description: props.desription
+            due_date: props.due_date,
+            description: props.desription,
+            // assigned_id: props.assigned_id
         }, config)
 
         if (response.status === 200 || response.status === 201) {

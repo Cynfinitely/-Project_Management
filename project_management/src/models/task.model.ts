@@ -7,8 +7,9 @@ export interface ITask {
 export interface Task {
   _id: string;
   project_id?: string;
-  createdAt: string;
+  due_date: string;
   name: string;
   status: string;
-  description?: string
+  description?: string;
+  // assigned_id?: string;
 };

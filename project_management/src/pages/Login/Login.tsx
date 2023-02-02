@@ -29,7 +29,7 @@ const Login = () => {
           console.log(value.payload);
                   
           
-          dispatch(setUser({id: '63da33cf7890075b81f3c1ed',
+          dispatch(setUser({id: user.id,
             email: user.email, 
             fullname: user.fullname, 
             userToken: user.userToken, 

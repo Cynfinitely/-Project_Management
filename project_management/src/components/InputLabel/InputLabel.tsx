@@ -1,7 +1,7 @@
 interface IInputLabelProps {
     label: string,
     typeInput: string,
-    inputValue: string,
+    inputValue: any,
     extraClass?: string,
     placeHolder: string,
     onValueChange: (value: string) => void
@@ -20,7 +20,7 @@ const InputLabel = ({
         <>
             <h3>{label}</h3>
             <input
-                className={`mb-16 ${extraClass} bg-gray-100  text-gray-900 rounded-lg focus:border-blue-800`}
+                className={`${extraClass} `}
                 type={typeInput}
                 value={inputValue}
                 onChange={(e) => onValueChange(e.target.value)} 

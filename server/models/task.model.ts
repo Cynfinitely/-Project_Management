@@ -11,7 +11,7 @@ const taskScheme = mongoose.Schema(
 
         status: {
             type: String,
-            default: 'idea',
+            default: 'Idea',
         },
 
         due_date: Date,
