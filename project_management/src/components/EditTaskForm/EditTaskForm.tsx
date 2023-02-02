@@ -15,7 +15,8 @@ interface IEditTaskFormProps {
   taskName: string;
   taskDescription: string,
   taskStatus: string,
-  taskDate: string
+  taskDate: string,
+  // taskAssignedId: string
   closeModal: () => void
   acceptClick: (task: Task) => void
 }
@@ -25,6 +26,7 @@ export interface ITaskUpdated {
   description: string
   status: string
   dueDate: string
+  // assigned_id: string
 }
 
 const EditTaskForm = ({
@@ -33,6 +35,7 @@ const EditTaskForm = ({
   taskDescription,
   taskStatus,
   taskDate,
+  // taskAssignedId,
   acceptClick,
   closeModal
 }: IEditTaskFormProps) => {
@@ -41,6 +44,7 @@ const EditTaskForm = ({
   const [desription, setDescription] = useState(taskDescription)
   const [status, setStatus] = useState(taskStatus)
   const [dueDate, setDueDate] = useState(taskDate)
+  // const [assignedId, setAssignedId] = useState(taskAssignedId)
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()    
@@ -48,15 +52,16 @@ const EditTaskForm = ({
       _id: taskId,
       name: title,
       status: status,
-      createdAt: dueDate,
-      description: desription
+      due_date: dueDate,
+      description: desription,
+      // assigned_id: assignedId,
     }
     acceptClick(task)          
   }
 
   return (
     <div className="w-full h-full flex flex-col">
-      <div className="flex justify-center items-center bord border-2 text-center p-2 uppercase font-bold">
+      <div className="flex justify-center items-center text-center p-2 uppercase font-bold">
         {taskName}
       </div>
       <form className="form-edit" onSubmit={(e) => handleSubmit(e)}>
@@ -66,21 +71,29 @@ const EditTaskForm = ({
           typeInput='text'
           inputValue={title}
           placeHolder={"Your Title Here"}
-          onValueChange={(e) => setTitle(e)}        
+          onValueChange={(e) => setTitle(e)}    
+          extraClass="border border-gray-300 my-3 p-3 rounded-md focus:border-gray-500 focus:ring-1 ring-gray-500 "      
         />
 
         <TextAreaLabel 
           label='Description'
           inputValue={desription}
-          onValueChange={(e) => setDescription(e)}        
+          onValueChange={(e) => setDescription(e)}  
+          extraClass="appearance-none border border-gray-300 my-3 p-3 rounded-md focus:border-gray-500 focus:ring-1 ring-gray-500"    
         />
 
-        <h3>Due Date</h3>
-        <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)}/>
+        <InputLabel 
+          label='Due Date'
+          typeInput='date'
+          placeHolder={"Your Title Here"}
+          inputValue={dueDate}
+          onValueChange={(e) => setDueDate(e)}    
+          extraClass="border border-gray-300 my-3 p-3 rounded-md focus:border-gray-500 focus:ring-1 ring-gray-500 "      
+        />
 
         <h3>Status</h3>
         <CheckBox text={status} onChange={(newStatus) => setStatus(newStatus)}/>
-
+      
         <ModalFooter cancelClick={() => closeModal()}/>
       </form>
     </div>

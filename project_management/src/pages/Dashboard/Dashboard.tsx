@@ -87,7 +87,7 @@ const Dashboard = () => {
       {/* part-1 daniel */}
       <div className='flex w-full justify-between'>
         <div className='w-1/2  pr-10 lg:pr-20 flex flex-col mr-4 cursor-pointer py-1 text-2xl font-bold text-gray-700'>
-          <span>Hi Celal!</span>
+          <span>Hi {user?.fullname}!</span>
           <span>Welcome To Dashboard</span>
           <span className='text-sm'>You are so handsome today:)</span>
         </div>

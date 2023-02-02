@@ -34,9 +34,10 @@ const CommentForm = ({
   function handleAddComment() {
     const newComment: ICommentTask = {
       description: commentValue,
-      writer_id: userState.user?.id ?? "",
+      writer_id: user?.id ?? "",
       task_id: task_id
     }
+    console.log(newComment,'newComment')
     dispatch(addNewComment(newComment))
     .then(value => {      
       setAddComment(!addCommnet)

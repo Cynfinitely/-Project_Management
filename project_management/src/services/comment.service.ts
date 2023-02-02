@@ -25,13 +25,13 @@ export const deleteComment = createAsyncThunk('deleteComment',
 
 export const addNewComment = createAsyncThunk('addNewComment',
     async (props: ICreateComment, thunkAPI) => {
-        console.log(props);
+        console.log(props,'props');
 
 
         const response = await axios.post(`${BASE_URL}/comment/new`, {
             description: props.description,
             task_id: props.task_id,
-            writer_id: '63da33cf7890075b81f3c1ed'
+            writer_id: props.writer_id
         })
 
         if (response.status === 200) {
