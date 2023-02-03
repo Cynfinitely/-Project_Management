@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 import { BASE_URL } from "../utils/constants";
 
@@ -25,7 +25,7 @@ export const deleteComment = createAsyncThunk('deleteComment',
 
 export const addNewComment = createAsyncThunk('addNewComment',
     async (props: ICreateComment, thunkAPI) => {
-        console.log(props,'props');
+        console.log(props, 'props');
 
 
         const response = await axios.post(`${BASE_URL}/comment/new`, {
