@@ -1,5 +1,3 @@
-import React from "react";
-
 import "./style/footer.css";
 import logo from './style/happiness.png'
 

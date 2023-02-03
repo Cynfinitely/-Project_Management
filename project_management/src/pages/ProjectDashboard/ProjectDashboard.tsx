@@ -1,8 +1,7 @@
-import { taskCancelled } from '@reduxjs/toolkit/dist/listenerMiddleware/exceptions';
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useState } from "react";
-import { Link, useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import CommentForm from '../../components/CommentForm/CommentForm';
 import EditTaskForm from '../../components/EditTaskForm/EditTaskForm';
 import Modal from '../../components/Modal/Modal';

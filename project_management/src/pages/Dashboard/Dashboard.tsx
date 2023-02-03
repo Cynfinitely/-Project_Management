@@ -1,7 +1,6 @@
 import {useEffect, useState } from 'react'
 import { Store } from 'react-notifications-component';
 import { useAppDispatch, useAppSelector } from '../../hooks/useRedux';
-import Modal from '../../components/Modal/Modal';
 import { createNewProject, fetcProjecstByUser, deleteProject } from './../../services/project.service';
 import { addProject } from '../../redux/slices/user.slice';
 import ProjectItems from './ProjectItmes';

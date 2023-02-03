@@ -1,9 +1,4 @@
-
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
-import {useEffect, useState } from 'react'
-
-
 
 const Navbar = () => {
   const access_token = localStorage.getItem('user')
