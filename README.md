@@ -2,6 +2,8 @@
 
 ## TO-DO
 
+- [ ]  Prepare readme file
+- [ ]  deployment
 - [ ]  attachments to tasks.
 - [ ]  receive reminders.
 - [ ]  assign them to other users.
